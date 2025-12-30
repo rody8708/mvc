@@ -4,7 +4,7 @@ namespace App\Core;
 use App\Core\Logger;
 use App\Core\Functions;
 use App\Core\User;
-use App\models\NotificationModel;
+use App\Models\NotificationModel;
 
 class Controller {    
     protected $functions; // Instancia de la clase Functions
@@ -101,5 +101,6 @@ class Controller {
 
 
 }
+
 
 ?>
