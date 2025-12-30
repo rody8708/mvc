@@ -13,7 +13,9 @@ class Controller {
 
 
     public function __construct() {
+        $this->functions        = new Functions();       // inicializar
         $this->notificationModel = new NotificationModel();
+        $this->user             = new User();
     }
 
 
@@ -104,3 +106,4 @@ class Controller {
 
 
 ?>
+
