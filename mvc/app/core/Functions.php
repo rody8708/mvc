@@ -291,7 +291,7 @@ class Functions {
     }
 
 
-    public static function addModuleToJson($name, $slug, $menu_label,) {
+    public static function addModuleToJson($name, $slug, $menu_label) {
         $path = BASE_PATH . '/config/modules.json';
         $modules = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
         
@@ -500,3 +500,4 @@ class Functions {
 }
 
 ?>
+
