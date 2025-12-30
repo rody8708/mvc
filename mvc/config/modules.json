@@ -1,0 +1,9 @@
+[
+    {
+        "name": "prueba",
+        "slug": "prueba",
+        "menu_label": "Esto es una prueba",
+        "admin_only": false,
+        "auth_only": true
+    }
+]

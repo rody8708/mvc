@@ -1,0 +1,92 @@
+[2025-12-30 15:11:03] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:11:07] [WARNING] [154.28.229.119 | Linux | Chrome | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:11:07] [WARNING] [154.28.229.66 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:11:28] [WARNING] [104.252.191.27 | Linux | Chrome | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:14:50] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:14:54] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:15:00] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:15:04] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:15:10] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:17:58] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:21:16] [WARNING] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] 404 Not Found - Route '/public' not defined.
+[2025-12-30 15:22:19] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:22:20] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:26] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\AuthController@loginForm for route '/auth/login'
+[2025-12-30 15:22:26] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:29] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\AuthController@login for route '/auth/login'
+[2025-12-30 15:22:30] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Inicio de sesión exitoso: rodycuetara8708@gmail.com
+[2025-12-30 15:22:31] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:22:31] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:39] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\AdminController@manageUsers for route '/admin/users'
+[2025-12-30 15:22:39] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:44] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:22:44] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:44] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:44] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:53] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@deleteModule for route '/admin/delete-module'
+[2025-12-30 15:22:53] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Módulo 'payments' eliminado por el administrador.
+[2025-12-30 15:22:53] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:55] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@deleteModule for route '/admin/delete-module'
+[2025-12-30 15:22:55] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Módulo 'subcription' eliminado por el administrador.
+[2025-12-30 15:22:55] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:57] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@deleteModule for route '/admin/delete-module'
+[2025-12-30 15:22:57] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Módulo 'api_invoice' eliminado por el administrador.
+[2025-12-30 15:22:57] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:59] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:22:59] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:22:59] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:22:59] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:37:41] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:37:41] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:37:41] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:37:41] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:37:46] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:37:46] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:40:56] [INFO] [103.196.9.137 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:40:57] [INFO] [103.4.250.129 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:41:01] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:41:02] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:41:05] [INFO] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:41:24] [WARNING] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/https%3A/mvc.zendrhax.com' not defined.
+[2025-12-30 15:41:24] [WARNING] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/https%3A/mvc.zendrhax.com/auth/register' not defined.
+[2025-12-30 15:41:24] [WARNING] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/%23' not defined.
+[2025-12-30 15:41:24] [INFO] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@contact for route '/layouts/contact'
+[2025-12-30 15:41:24] [INFO] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@privacy for route '/layouts/privacy'
+[2025-12-30 15:41:24] [INFO] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@help for route '/layouts/help'
+[2025-12-30 15:41:24] [INFO] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:41:25] [WARNING] [103.196.9.137 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/https%3A/mvc.zendrhax.com/auth/login' not defined.
+[2025-12-30 15:43:56] [INFO] [64.15.129.110 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:43:57] [INFO] [192.175.111.236 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:43:57] [INFO] [192.175.111.245 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:45:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:45:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:45:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:45:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:45:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:46:13] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@generateCrud for route '/admin/generate-module'
+[2025-12-30 15:46:13] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Módulo 'prueba' generado por el administrador.
+[2025-12-30 15:46:13] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:46:15] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@crudGeneratorView for route '/admin/crud-generator'
+[2025-12-30 15:46:16] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:46:16] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:46:16] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\ToolController@getModules for route '/admin/get-modules'
+[2025-12-30 15:46:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\PruebaController@index for route '/prueba'
+[2025-12-30 15:46:23] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: rody] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 15:48:41] [WARNING] [74.7.230.35 | Mac | Chrome | Usuario: Anonimo] 404 Not Found - Route '/robots.txt' not defined.
+[2025-12-30 15:58:59] [INFO] [35.164.93.75 | Mac | Safari | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 15:59:35] [INFO] [35.164.93.75 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:01:17] [INFO] [104.252.191.80 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:01:17] [INFO] [104.252.191.167 | Linux | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:01:25] [INFO] [104.252.191.80 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:28:20] [INFO] [54.214.81.79 | Mac | Safari | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:28:20] [INFO] [54.214.81.79 | Mac | Safari | Usuario: Anonimo] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
+[2025-12-30 16:32:21] [INFO] [2a02:4780:28:50c8::1 | Mac | Safari | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:37:52] [INFO] [35.193.144.231 | Windows | Firefox | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:38:56] [INFO] [43.134.229.11 | Desconocido | Desconocido | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:54:19] [INFO] [2607:5300:205:200::5542 | Windows | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 16:59:28] [INFO] [35.90.163.19 | Mac | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 17:02:26] [INFO] [84.254.106.197 | Linux | Chrome | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 17:02:27] [WARNING] [84.254.106.197 | Linux | Chrome | Usuario: Anonimo] 404 Not Found - Route '/js/lkk_ch.js' not defined.
+[2025-12-30 17:02:36] [WARNING] [84.254.106.197 | Linux | Chrome | Usuario: Anonimo] 404 Not Found - Route '/js/twint_ch.js' not defined.
+[2025-12-30 17:16:02] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\HomeController@index for route '/'
+[2025-12-30 17:16:02] [INFO] [2603:900b:fe40:ba7:a1c4:1885:291e:c6c1 | Windows | Edge | Usuario: Anonimo] Executing App\Controllers\NotificationController@fetch for route '/notifications/fetch'
