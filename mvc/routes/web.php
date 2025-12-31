@@ -32,16 +32,13 @@ $router->addRoute('POST', '/admin/create-user', 'AdminController@createUser');
 $router->addRoute('POST', '/admin/update-user', 'AdminController@updateUser');
 
 
-
-
-$router->addRoute('GET', '/password/request', 'PasswordResetController@requestForm');
-$router->addRoute('POST', '/password/request', 'PasswordResetController@handleRequest');
-$router->addRoute('GET', '/password/reset', 'PasswordResetController@resetForm');
-$router->addRoute('POST', '/password/reset', 'PasswordResetController@handleReset');
+//$router->addRoute('GET', '/password/request', 'PasswordResetController@requestForm');
+//$router->addRoute('POST', '/password/request', 'PasswordResetController@handleRequest');
+//$router->addRoute('GET', '/password/reset', 'PasswordResetController@resetForm');
+//$router->addRoute('POST', '/password/reset', 'PasswordResetController@handleReset');
 
 $router->addRoute('GET', '/auth/forgot-password', 'AuthController@forgotPasswordForm');
 $router->addRoute('POST', '/auth/send-reset-link', 'AuthController@sendResetLink');
-
 $router->addRoute('GET', '/auth/reset-password-form', 'AuthController@resetPasswordForm');
 $router->addRoute('POST', '/auth/reset-password', 'AuthController@resetPassword');
 
@@ -93,5 +90,6 @@ foreach (glob(__DIR__ . '/modules/*.php') as $moduleRoute) {
 
 // Ejecutar el enrutador
 $router->dispatch($_SERVER['REQUEST_URI']);
+
 
 ?>
