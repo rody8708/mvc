@@ -31,8 +31,8 @@ return [
      *  - PAYPAL_RETURN_URL
      *  - PAYPAL_CANCEL_URL
      */
-    'return_url' => getenv('PAYPAL_RETURN_URL') ?: 'https://app.zendrhax.com/subcription/return',
-    'cancel_url' => getenv('PAYPAL_CANCEL_URL') ?: 'https://app.zendrhax.com/subcription/cancelled',
+    'return_url' => getenv('PAYPAL_RETURN_URL') ?: '',
+    'cancel_url' => getenv('PAYPAL_CANCEL_URL') ?: '',
 
 
     // ======================================================================
@@ -87,18 +87,9 @@ return [
                 'paypal_plan_id' => getenv('PAYPAL_PLAN_LIVE_PRO') ?: '',
                 'max_devices'    => 1,
                 'label'          => 'Subscription Plans - Pro (Annual)',
-                'price'          => '59.99',     // ajusta si aplica
+                'price'          => '',     // ajusta si aplica
                 'currency'       => 'USD',
-            ],
-
-            // BUSINESS (2 devices)
-            'business' => [
-                'paypal_plan_id' => getenv('PAYPAL_PLAN_LIVE_BUSINESS') ?: '',
-                'max_devices'    => 2,
-                'label'          => 'Subscription Plans - Business (Annual)',
-                'price'          => '79.99',    // ajusta si aplica
-                'currency'       => 'USD',
-            ],
+            ],           
         ],
     ],
 
@@ -154,18 +145,10 @@ return [
                 'paypal_plan_id' => getenv('PAYPAL_PLAN_SANDBOX_PRO') ?: '',
                 'max_devices'    => 1,
                 'label'          => 'Subscription Plans - Pro (Annual)',
-                'price'          => '59.99',
-                'currency'       => 'USD',
-            ],
-
-            // BUSINESS (2 devices)
-            'business' => [
-                'paypal_plan_id' => getenv('PAYPAL_PLAN_SANDBOX_BUSINESS') ?: '',
-                'max_devices'    => 2,
-                'label'          => 'Subscription Plans - Business (Annual)',
-                'price'          => '79.99',
+                'price'          => '',
                 'currency'       => 'USD',
             ],
         ],
     ],
 ];
+
