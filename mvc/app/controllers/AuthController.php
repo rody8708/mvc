@@ -69,10 +69,10 @@ class AuthController extends Controller {
         }
 
         if ($userModel->nameExists($name)) {
-            Logger::warning("El nombrede usuario ya esta en uso: $name");
+            Logger::warning("El nombrede de usuario ya esta en uso: $name");
             echo json_encode([
                 'success' => false,
-                'message' => 'El nombrede usuario ya esta en uso.'
+                'message' => 'El nombre de usuario ya esta en uso.'
             ]);
             return;
         }
@@ -407,4 +407,5 @@ class AuthController extends Controller {
 
 
 }
+
 ?>
