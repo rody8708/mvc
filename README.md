@@ -431,6 +431,7 @@ Routes
 The routes are defined in routes/web.php. The main ones include:
 
 Method & path	Action	Description
+
 GET /	HomeController@index	Shows the home page
 github.com
 .
