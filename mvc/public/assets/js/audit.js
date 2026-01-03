@@ -13,25 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateAuditTable() {
         fetch('/admin/audit/data', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            const auditTableBody = document.getElementById('auditTableBody');
-            auditTableBody.innerHTML = '';
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const auditTableBody = document.getElementById('auditTableBody');
+                auditTableBody.innerHTML = '';
 
-            data.logs.forEach(log => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
+                data.logs.forEach(log => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
                     <td>${log.timestamp}</td>
                     <td>${log.user}</td>
                     <td>${log.ip}</td>
                     <td>${log.action}</td>
                     <td>${log.level}</td>
                 `;
-                auditTableBody.appendChild(row);
+                    auditTableBody.appendChild(row);
+                });
             });
-        });
     }
 
     updateAuditTable();
