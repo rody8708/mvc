@@ -31,6 +31,12 @@ $router->addRoute('POST', '/admin/delete-user', 'AdminController@deleteUser');
 $router->addRoute('POST', '/admin/create-user', 'AdminController@createUser');
 $router->addRoute('POST', '/admin/update-user', 'AdminController@updateUser');
 $router->addRoute('GET', '/admin/logs', 'AdminController@viewLogs');
+$router->addRoute('GET', '/admin/notifications', 'AdminController@viewNotifications');
+$router->addRoute('GET', '/admin/statistics', 'AdminController@viewStatistics');
+$router->addRoute('GET', '/admin/roles', 'AdminController@viewRoles');
+$router->addRoute('GET', '/admin/files', 'AdminController@viewFiles');
+$router->addRoute('GET', '/admin/audit', 'AdminController@viewAudit');
+$router->addRoute('GET', '/admin/settings', 'AdminController@viewSettings');
 
 
 //$router->addRoute('GET', '/password/request', 'PasswordResetController@requestForm');
