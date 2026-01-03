@@ -37,9 +37,9 @@
         .then(response => response.json())
         .then(data => {
             if (data) {
-                document.querySelector('.card:nth-child(1) .card-text').textContent = data.total_users;
-                document.querySelector('.card:nth-child(2) .card-text').textContent = data.recent_logs;
-                document.querySelector('.card:nth-child(3) .card-text').textContent = data.total_notifications;
+                document.querySelector('.col-md-4:nth-child(1) .card-text').textContent = data.total_users;
+                document.querySelector('.col-md-4:nth-child(2) .card-text').textContent = data.recent_logs;
+                document.querySelector('.col-md-4:nth-child(3) .card-text').textContent = data.total_notifications;
 
                 const ctx = document.getElementById('statsChart').getContext('2d');
                 new Chart(ctx, {
