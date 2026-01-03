@@ -15,3 +15,23 @@ body {
 .settings-form label {
     color: var(--primary-color);
 }
+
+
+/* Light mode styles for settings view */
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.settings-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-card h5 {
+    color: #343a40;
+}
