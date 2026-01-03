@@ -117,6 +117,15 @@ class LogModel extends Model {
         return $stmt->fetchAll();
     }
 
+    public function getRecentLogsCount($days = 7) {
+        $stmt = self::getDb()->prepare(
+            "SELECT COUNT(*) FROM logs WHERE timestamp >= datetime('now', :daysAgo)"
+        );
+        $stmt->bindValue(':daysAgo', '-' . $days . ' days');
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
 
 }
 
