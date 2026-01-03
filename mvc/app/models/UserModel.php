@@ -397,6 +397,11 @@ class UserModel extends Model {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getTotalUsers() {
+        $stmt = self::getDb()->query("SELECT COUNT(*) FROM users");
+        return $stmt->fetchColumn();
+    }
+
 
 
 }
