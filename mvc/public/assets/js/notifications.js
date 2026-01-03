@@ -75,4 +75,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Al abrir el menú
     const toggle = document.getElementById("notificationToggle");
     if (toggle) toggle.addEventListener("click", fetchNotifications);
+
+    // Fetch notifications data from the controller
+    fetch('/admin/notifications/data', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const notificationList = document.getElementById('notificationList');
+            notificationList.innerHTML = '';
+
+            data.notifications.forEach(notification => {
+                const item = document.createElement('div');
+                item.className = 'notification-card';
+                item.innerHTML = `<h5>${notification.message}</h5><p>${notification.level}</p>`;
+                notificationList.appendChild(item);
+            });
+        });
 });
