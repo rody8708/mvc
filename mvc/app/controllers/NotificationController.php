@@ -89,5 +89,18 @@ class NotificationController extends Controller {
         echo json_encode(['success' => $success]);
     }
 
+    public function getNotificationsData() {
+        header('Content-Type: application/json');
+        ob_clean();
+
+        if (!isset($_SESSION['user'])) {
+            echo json_encode(['success' => false, 'message' => 'No autenticado']);
+            return;
+        }
+
+        $notifications = $this->notificationModel->getAllNotifications();
+        echo json_encode(['success' => true, 'notifications' => $notifications]);
+    }
+
 }
 ?>
