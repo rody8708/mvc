@@ -409,15 +409,24 @@ class AdminController extends Controller {
         header('Content-Type: application/json');
         ob_clean();
 
-        $data = [
-            'total_users' => 100, // Replace with actual data
-            'recent_logs' => 50, // Replace with actual data
-            'total_notifications' => 25, // Replace with actual data
-            'chart_labels' => ['Jan', 'Feb', 'Mar'],
-            'chart_data' => [10, 20, 30]
-        ];
+        $userModel = new UserModel();
+        $logModel = new LogModel();
+        $notificationModel = new NotificationModel();
 
-        echo json_encode($data);
+        $totalUsers = $userModel->getTotalUsers();
+        $recentLogs = $logModel->getRecentLogsCount();
+        $totalNotifications = $notificationModel->getTotalNotifications();
+
+        $chartLabels = ['Enero', 'Febrero', 'Marzo']; // Ejemplo
+        $chartData = [15, 25, 35]; // Ejemplo
+
+        echo json_encode([
+            'total_users' => $totalUsers,
+            'recent_logs' => $recentLogs,
+            'total_notifications' => $totalNotifications,
+            'chart_labels' => $chartLabels,
+            'chart_data' => $chartData
+        ]);
     }
 
     public function getAuditData() {
