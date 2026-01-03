@@ -184,10 +184,10 @@ class Functions {
     
         return [
             'ip'        => self::getClientIP(),
-            'navegador' => self::getBrowser(),
-            'sistema'   => self::getOS(),
+            'browser'   => self::getBrowser(),
+            'system'    => self::getOS(),
             'user_agent'=> $_SERVER['HTTP_USER_AGENT'] ?? 'Desconocido',
-            'usuario'   => $usuario
+            'user'      => $usuario
         ];
     }
 
