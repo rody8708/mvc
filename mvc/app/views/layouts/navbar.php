@@ -56,7 +56,7 @@
             <li><a class="nav-link text-white" href="<?= BASE_URL ?>profile">👤 Mi perfil</a></li>
     
             <?php if ($isAdmin): ?>
-              <li><a class="nav-link text-white" href="<?= BASE_URL ?>adminlogs">📜 Logs</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/logs">📜 Logs</a></li>
               <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/users">👥 Usuarios</a></li>
               <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/crud-generator">🛠️ Generador de módulos</a></li>
             <?php endif; ?>
@@ -149,7 +149,7 @@
               <li><a class="dropdown-item" href="<?= BASE_URL ?>profile">👤 Mi perfil</a></li>
               <li><hr class="dropdown-divider"></li>
               <?php if (\App\Core\User::isAdmin()): ?>
-                <li><a class="dropdown-item" href="<?= BASE_URL ?>logs">📜 Logs</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/logs">📜 Logs</a></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/users">👥 Usuarios</a></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/crud-generator">🛠️ Generador de módulos</a></li>
               <?php endif; ?>
