@@ -102,5 +102,21 @@ class NotificationController extends Controller {
         echo json_encode(['success' => true, 'notifications' => $notifications]);
     }
 
+    public function createNotification() {
+        $this->requireAdmin();
+        header('Content-Type: application/json');
+        ob_clean();
+
+        $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+        $level = filter_input(INPUT_POST, 'level', FILTER_SANITIZE_STRING);
+
+        if (!$message || !$level) {
+            echo json_encode(['success' => false, 'message' => 'Mensaje y nivel son obligatorios']);
+            return;
+        }
+
+        $success = $this->notificationModel->createNotification($message, $level);
+        echo json_encode(['success' => $success]);
+    }
 }
 ?>

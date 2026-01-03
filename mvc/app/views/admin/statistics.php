@@ -30,25 +30,41 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('statsChart').getContext('2d');
-    const statsChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: {{ chart_labels }},
-            datasets: [{
-                label: 'Actividad del Sistema',
-                data: {{ chart_data }},
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/admin/statistics/data', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                document.querySelector('.card-text.display-4:nth-child(1)').textContent = data.total_users;
+                document.querySelector('.card-text.display-4:nth-child(2)').textContent = data.recent_logs;
+                document.querySelector('.card-text.display-4:nth-child(3)').textContent = data.total_notifications;
+
+                const ctx = document.getElementById('statsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.chart_labels,
+                        datasets: [{
+                            label: 'Actividad del Sistema',
+                            data: data.chart_data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.error('No se pudieron cargar los datos de estadísticas.');
             }
-        }
+        });
     });
 </script>
