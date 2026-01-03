@@ -37,6 +37,16 @@ $router->addRoute('GET', '/admin/roles', 'AdminController@viewRoles');
 $router->addRoute('GET', '/admin/files', 'AdminController@viewFiles');
 $router->addRoute('GET', '/admin/audit', 'AdminController@viewAudit');
 $router->addRoute('GET', '/admin/settings', 'AdminController@viewSettings');
+$router->addRoute('GET', '/admin/roles/data', 'AdminController@getRolesData');
+$router->addRoute('POST', '/admin/roles/create', 'AdminController@createRole');
+$router->addRoute('POST', '/admin/roles/delete', 'AdminController@deleteRole');
+
+$router->addRoute('GET', '/admin/audit/data', 'AdminController@getAuditData');
+
+$router->addRoute('POST', '/admin/settings/update', 'AdminController@updateSettings');
+
+$router->addRoute('GET', '/admin/statistics/data', 'AdminController@getStatisticsData');
+$router->addRoute('GET', '/admin/notifications/data', 'NotificationController@getNotificationsData');
 
 
 //$router->addRoute('GET', '/password/request', 'PasswordResetController@requestForm');
