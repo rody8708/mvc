@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Rol creado correctamente');
+                        showFloatingAlert('Rol creado correctamente', 'success');
                         location.reload();
                     } else {
-                        alert('Error al crear el rol');
+                        showFloatingAlert('Error al crear el rol', 'danger');
                     }
                 });
         } else {
-            alert('El nombre del rol es obligatorio');
+            showFloatingAlert('El nombre del rol es obligatorio', 'warning');
         }
     });
 });

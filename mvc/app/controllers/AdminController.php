@@ -203,19 +203,7 @@ class AdminController extends Controller {
      */
     public function viewStatistics() {
         $this->requireAdmin();
-
-        $userModel = new UserModel();
-        $logModel = new LogModel();
-        $notificationModel = new NotificationModel();
-
-        $totalUsers = $userModel->countUsers();
-        $recentLogs = $logModel->countLogs();
-        $totalNotifications = $notificationModel->countNotifications();
-
-        $chartLabels = ['Usuarios', 'Logs', 'Notificaciones'];
-        $chartData = [$totalUsers, $recentLogs, $totalNotifications];
-
-        $this->loadView('admin/statistics', compact('totalUsers', 'recentLogs', 'totalNotifications', 'chartLabels', 'chartData'));
+        $this->loadView('admin/statistics');
     }
 
     /**
@@ -223,10 +211,8 @@ class AdminController extends Controller {
      */
     public function viewRoles() {
         $this->requireAdmin();
-
-        $roleModel = new RoleModel();
-        $roles = $roleModel->getAllRoles();
-
+        $model = new RoleModel();
+        $roles = $model->getAllRoles();
         $this->loadView('admin/roles', compact('roles'));
     }
 
@@ -330,10 +316,8 @@ class AdminController extends Controller {
 
     public function viewAudit() {
         $this->requireAdmin();
-
-        $logModel = new LogModel();
-        $logs = $logModel->getLogs(100, 0); // Obtener los últimos 100 logs
-
+        $model = new LogModel();
+        $logs = $model->getAllLogs();
         $this->loadView('admin/audit', compact('logs'));
     }
 
@@ -401,5 +385,23 @@ class AdminController extends Controller {
         echo json_encode(['success' => $success]);
     }
 
+    public function viewNotifications() {
+        $this->requireAdmin();
+        $model = new NotificationModel();
+        $notifications = $model->getAllNotifications();
+        $this->loadView('admin/notifications', compact('notifications'));
+    }
+
+    public function viewFiles() {
+        $this->requireAdmin();
+        $this->loadView('admin/files');
+    }
+
+    public function viewSettings() {
+        $this->requireAdmin();
+        $model = new ConfigModel();
+        $settings = $model->getAllSettings();
+        $this->loadView('admin/settings', compact('settings'));
+    }
 }
 ?>
