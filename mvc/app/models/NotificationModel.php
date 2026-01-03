@@ -29,7 +29,7 @@ class NotificationModel extends Model {
     }
 
     public function getAllNotifications() {
-        $stmt = self::getDb()->query("SELECT * FROM notifications ORDER BY created_at DESC");
+        $stmt = self::getDb()->query("SELECT id, user_id, message, level, is_read, created_at FROM notifications ORDER BY created_at DESC");
         return $stmt->fetchAll();
     }
 

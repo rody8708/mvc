@@ -113,7 +113,7 @@ class LogModel extends Model {
     }
 
     public function getAllLogs() {
-        $stmt = self::getDb()->query("SELECT * FROM logs ORDER BY created_at DESC");
+        $stmt = self::getDb()->query("SELECT id, user, ip, os, browser, action, level, timestamp FROM logs ORDER BY timestamp DESC");
         return $stmt->fetchAll();
     }
 
