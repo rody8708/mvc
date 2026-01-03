@@ -59,6 +59,12 @@
               <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/logs">📜 Logs</a></li>
               <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/users">👥 Usuarios</a></li>
               <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/crud-generator">🛠️ Generador de módulos</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/notifications">🔔 Notificaciones</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/statistics">📊 Estadísticas</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/roles">👥 Roles</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/files">📂 Archivos</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/audit">📜 Auditoría</a></li>
+              <li><a class="nav-link text-white" href="<?= BASE_URL ?>admin/settings">⚙️ Configuración</a></li>
             <?php endif; ?>
     
             <li class="nav-item">
@@ -152,6 +158,12 @@
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/logs">📜 Logs</a></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/users">👥 Usuarios</a></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/crud-generator">🛠️ Generador de módulos</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/notifications">🔔 Notificaciones</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/statistics">📊 Estadísticas</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/roles">👥 Roles</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/files">📂 Archivos</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/audit">📜 Auditoría</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>admin/settings">⚙️ Configuración</a></li>
               <?php endif; ?>
               <li><a class="dropdown-item text-danger" href="<?= BASE_URL ?>auth/logout">🚪 Cerrar sesión</a></li>
             </ul>
