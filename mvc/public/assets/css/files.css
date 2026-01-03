@@ -1,0 +1,20 @@
+/* Estilos para la vista de gestión de archivos */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.table {
+    border: 1px solid var(--border-color);
+    background-color: var(--table-background);
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.table td {
+    color: var(--text-color);
+}

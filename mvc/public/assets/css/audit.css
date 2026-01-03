@@ -1,0 +1,17 @@
+/* Estilos para la vista de auditoría */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.audit-log {
+    border: 1px solid var(--border-color);
+    background-color: var(--table-background);
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.audit-log h3 {
+    color: var(--primary-color);
+}

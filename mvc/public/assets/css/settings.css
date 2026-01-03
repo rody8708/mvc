@@ -1,0 +1,17 @@
+/* Estilos para la vista de configuración */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.settings-form {
+    border: 1px solid var(--border-color);
+    background-color: var(--form-background);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.settings-form label {
+    color: var(--primary-color);
+}

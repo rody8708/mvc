@@ -1,0 +1,22 @@
+/* Estilos para la vista de notificaciones */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.notification-card {
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.notification-card h5 {
+    color: var(--primary-color);
+}
+
+.notification-card p {
+    margin: 0;
+}

@@ -7,6 +7,11 @@ use App\Core\Logger;
 use App\Models\UserModel;
 use App\Core\Mailer;
 use App\Models\LogModel; // Import LogModel
+use App\Models\NotificationModel; // Import NotificationModel
+use App\Models\RoleModel; // Import RoleModel
+use App\Models\ConfigModel; // Import ConfigModel
+use App\Models\ModuleModel; // Import ModuleModel
+use App\Models\TicketModel; // Import TicketModel
 
 class AdminController extends Controller {
     /**
@@ -191,6 +196,209 @@ class AdminController extends Controller {
         $logs = $model->getLogs(50, 0); // Obtener los primeros 50 registros
 
         $this->loadView('admin/logs', compact('logs'));
+    }
+
+    /**
+     * Display system statistics
+     */
+    public function viewStatistics() {
+        $this->requireAdmin();
+
+        $userModel = new UserModel();
+        $logModel = new LogModel();
+        $notificationModel = new NotificationModel();
+
+        $totalUsers = $userModel->countUsers();
+        $recentLogs = $logModel->countLogs();
+        $totalNotifications = $notificationModel->countNotifications();
+
+        $chartLabels = ['Usuarios', 'Logs', 'Notificaciones'];
+        $chartData = [$totalUsers, $recentLogs, $totalNotifications];
+
+        $this->loadView('admin/statistics', compact('totalUsers', 'recentLogs', 'totalNotifications', 'chartLabels', 'chartData'));
+    }
+
+    /**
+     * Display roles management view
+     */
+    public function viewRoles() {
+        $this->requireAdmin();
+
+        $roleModel = new RoleModel();
+        $roles = $roleModel->getAllRoles();
+
+        $this->loadView('admin/roles', compact('roles'));
+    }
+
+    /**
+     * Create a new role via AJAX
+     */
+    public function createRole() {
+        $this->requireAdmin();
+        header('Content-Type: application/json');
+        ob_clean();
+
+        // Verify CSRF
+        if (!Functions::validateCSRFToken($_POST['csrf_token'] ?? '')) {
+            Logger::warning("Access attempt with invalid CSRF");
+            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+            exit;
+        }
+
+        $roleName = Functions::sanitize($_POST['role_name'] ?? '');
+
+        if (!$roleName) {
+            echo json_encode(['success' => false, 'message' => 'Role name is required.']);
+            return;
+        }
+
+        $roleModel = new RoleModel();
+        $success = $roleModel->createRole($roleName);
+
+        if ($success) {
+            Logger::info("Role '$roleName' created by admin.");
+            echo json_encode(['success' => true, 'message' => 'Role created successfully.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error creating role.']);
+        }
+    }
+
+    /**
+     * Delete a role via AJAX
+     */
+    public function deleteRole() {
+        $this->requireAdmin();
+        header('Content-Type: application/json');
+        ob_clean();
+
+        // Verify CSRF
+        if (!Functions::validateCSRFToken($_POST['csrf_token'] ?? '')) {
+            Logger::warning("Access attempt with invalid CSRF");
+            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+            exit;
+        }
+
+        $roleId = (int)($_POST['role_id'] ?? 0);
+
+        if ($roleId) {
+            $roleModel = new RoleModel();
+            if ($roleModel->deleteRole($roleId)) {
+                Logger::info("Role ID $roleId deleted by admin.");
+                echo json_encode(['success' => true, 'message' => 'Role deleted.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Could not delete role.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid role ID.']);
+        }
+        exit;
+    }
+
+    public function manageFiles() {
+        $this->requireAdmin();
+
+        $files = Functions::getUploadedFiles();
+        $this->loadView('admin/files', compact('files'));
+    }
+
+    public function uploadFile() {
+        $this->requireAdmin();
+
+        if (!isset($_FILES['file'])) {
+            echo json_encode(['success' => false, 'message' => 'No se proporcionó ningún archivo']);
+            return;
+        }
+
+        $file = $_FILES['file'];
+        $success = Functions::uploadFile($file);
+
+        echo json_encode(['success' => $success]);
+    }
+
+    public function deleteFile() {
+        $this->requireAdmin();
+
+        $fileName = filter_input(INPUT_POST, 'file_name', FILTER_SANITIZE_STRING);
+        if (!$fileName) {
+            echo json_encode(['success' => false, 'message' => 'Nombre del archivo no proporcionado']);
+            return;
+        }
+
+        $success = Functions::deleteFile($fileName);
+        echo json_encode(['success' => $success]);
+    }
+
+    public function viewAudit() {
+        $this->requireAdmin();
+
+        $logModel = new LogModel();
+        $logs = $logModel->getLogs(100, 0); // Obtener los últimos 100 logs
+
+        $this->loadView('admin/audit', compact('logs'));
+    }
+
+    public function manageSettings() {
+        $this->requireAdmin();
+
+        $settings = ConfigModel::getAllSettings();
+        $this->loadView('admin/settings', compact('settings'));
+    }
+
+    public function updateSettings() {
+        $this->requireAdmin();
+
+        $siteName = filter_input(INPUT_POST, 'site_name', FILTER_SANITIZE_STRING);
+        $adminEmail = filter_input(INPUT_POST, 'admin_email', FILTER_SANITIZE_EMAIL);
+
+        if (!$siteName || !$adminEmail) {
+            echo json_encode(['success' => false, 'message' => 'Todos los campos son obligatorios']);
+            return;
+        }
+
+        $success = ConfigModel::updateSettings(['site_name' => $siteName, 'admin_email' => $adminEmail]);
+        echo json_encode(['success' => $success]);
+    }
+
+    public function manageModules() {
+        $this->requireAdmin();
+
+        $modules = ModuleModel::getAllModules();
+        $this->loadView('admin/modules', compact('modules'));
+    }
+
+    public function toggleModule() {
+        $this->requireAdmin();
+
+        $moduleId = filter_input(INPUT_POST, 'module_id', FILTER_SANITIZE_NUMBER_INT);
+        if (!$moduleId) {
+            echo json_encode(['success' => false, 'message' => 'ID del módulo no proporcionado']);
+            return;
+        }
+
+        $success = ModuleModel::toggleModule($moduleId);
+        echo json_encode(['success' => $success]);
+    }
+
+    public function manageSupport() {
+        $this->requireAdmin();
+
+        $tickets = TicketModel::getAllTickets();
+        $this->loadView('admin/support', compact('tickets'));
+    }
+
+    public function respondToTicket() {
+        $this->requireAdmin();
+
+        $ticketId = filter_input(INPUT_POST, 'ticket_id', FILTER_SANITIZE_NUMBER_INT);
+        $response = filter_input(INPUT_POST, 'response', FILTER_SANITIZE_STRING);
+
+        if (!$ticketId || !$response) {
+            echo json_encode(['success' => false, 'message' => 'Todos los campos son obligatorios']);
+            return;
+        }
+
+        $success = TicketModel::respondToTicket($ticketId, $response);
+        echo json_encode(['success' => $success]);
     }
 
 }
