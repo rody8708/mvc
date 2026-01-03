@@ -112,6 +112,11 @@ class LogModel extends Model {
         return $stmt->fetchColumn();
     }
 
+    public function getAllLogs() {
+        $stmt = self::getDb()->query("SELECT * FROM logs ORDER BY created_at DESC");
+        return $stmt->fetchAll();
+    }
+
 
 }
 

@@ -28,4 +28,9 @@ class NotificationModel extends Model {
         $stmt->execute([$userId]);
     }
 
+    public function getAllNotifications() {
+        $stmt = self::getDb()->query("SELECT * FROM notifications ORDER BY created_at DESC");
+        return $stmt->fetchAll();
+    }
+
 }
