@@ -63,7 +63,6 @@ class Router
                 
                 $excludedApiRoutes = [
                     '/api_invoice',
-                    '/api_invoice/',
                     '/api_invoice/app-guide',
                     '/api_invoice/legal',
                     '/api_invoice/prueba',

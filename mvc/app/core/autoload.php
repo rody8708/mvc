@@ -1,10 +1,10 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    // Quitar el prefijo App\
+    // Remove the App\ prefix
     $class = str_replace('App\\', '', $class);
 
-    // Convertir carpetas a minúscula excepto el nombre del archivo (última parte)
+    // Convert folders to lowercase except for the file name (last part)
     $parts = explode('\\', $class);
     $lastIndex = count($parts) - 1;
 
@@ -19,8 +19,8 @@ spl_autoload_register(function ($class) {
     if (file_exists($classPath)) {
         require_once $classPath;
     } else {
-        \App\Core\Logger::info("❌ No se pudo cargar la clase '$class'. Ruta generada: $classPath");
-        die("Error: No se pudo cargar la clase '$class'. Verifica la ruta.");
+        \App\Core\Logger::info("❌ Could not load class '$class'. Generated path: $classPath");
+        die("Error: Could not load class '$class'. Check the path.");
     }
 });
 

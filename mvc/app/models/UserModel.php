@@ -8,13 +8,13 @@ use App\Core\Logger;
 
 class UserModel extends Model {
     /**
-     * Crear un nuevo usuario con token de activación
+     * Create a new user with activation token
      */
     public function createUser($name, $email, $password, $token) {
         try {
-            // Evitar duplicados por seguridad
+            // Avoid duplicates for security
             if ($this->emailExists($email)) {
-                Logger::warning("Intento de duplicado en base de datos: $email");
+                Logger::warning("Duplicate attempt in database: $email");
                 return false;
             }
 
@@ -29,22 +29,22 @@ class UserModel extends Model {
             $stmt->bindValue(':token', $token, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                Logger::info("✅ Usuario registrado: $email");                
+                Logger::info("✅ User registered: $email");                
                 return true;
             } else {
-                Logger::error("❌ Fallo al insertar usuario en la base de datos: $email");
+                Logger::error("❌ Failed to insert user into database: $email");
                 return false;
             }
 
         } catch (\PDOException $e) {
-            Logger::error("💥 Error PDO al crear usuario $email: " . $e->getMessage());
+            Logger::error("💥 PDO Error creating user $email: " . $e->getMessage());
             return false;
         }
     }
 
 
     /**
-     * Buscar usuario por token de activación
+     * Search user by activation token
      */
     public function findByToken($token) {
         $stmt = self::getDb()->prepare("SELECT * FROM users WHERE activation_token = ? AND is_active = 0");
@@ -53,7 +53,7 @@ class UserModel extends Model {
     }
 
     /**
-     * Activar cuenta por token
+     * Activate account by token
      */
     public function activateUser($token) {
         $stmt = self::getDb()->prepare("UPDATE users SET is_active = 1, activation_token = NULL WHERE activation_token = ?");
@@ -61,7 +61,7 @@ class UserModel extends Model {
     }
 
     /**
-     * Verificar si el correo ya está registrado
+     * Verify if the email is already registered
      */
     public function emailExists($email) {
         $stmt = self::getDb()->prepare("SELECT id FROM users WHERE email = ?");
@@ -152,10 +152,10 @@ class UserModel extends Model {
                 $roleId,
                 $token
             ]);
-            Logger::info("Usuario creado desde admin: $email");            
+            Logger::info("User created from admin: $email");            
             return true;
         } catch (\PDOException $e) {
-            Logger::error("Error al crear usuario desde admin: " . $e->getMessage());
+            Logger::error("Error creating user from admin: " . $e->getMessage());
             return false;
         }
     }
@@ -177,7 +177,7 @@ class UserModel extends Model {
             $stmt = self::getDb()->prepare($query);
             return $stmt->execute($params);
         } catch (\PDOException $e) {
-            Logger::error("Error al actualizar usuario ID $id: " . $e->getMessage());
+            Logger::error("Error updating user ID $id: " . $e->getMessage());
             return false;
         }
     }
@@ -198,7 +198,7 @@ class UserModel extends Model {
             ");
             return $stmt->execute([$userId, $token, $expiresAt]);
         } catch (\PDOException $e) {
-            Logger::error("Error al guardar token de recuperación: " . $e->getMessage());
+            Logger::error("Error saving recovery token: " . $e->getMessage());
             return false;
         }
     }
@@ -217,17 +217,17 @@ class UserModel extends Model {
 
     public function updatePassword($userId, $newPassword) {
         try {
-            // Actualizar la contraseña en la tabla users
+            // Update the password in the users table
             $stmt = self::getDb()->prepare("UPDATE users SET password = ? WHERE id = ?");
             $stmt->execute([password_hash($newPassword, PASSWORD_DEFAULT), $userId]);
 
-            // Eliminar el token de password_resets
+            // Delete the token from password_resets
             $del = self::getDb()->prepare("DELETE FROM password_resets WHERE user_id = ?");
             $del->execute([$userId]);
             
             return true;
         } catch (\PDOException $e) {
-            Logger::error("Error al actualizar contraseña para usuario ID: $userId - " . $e->getMessage());
+            Logger::error("Error updating password for user ID: $userId - " . $e->getMessage());
             return false;
         }
     }
@@ -244,7 +244,7 @@ class UserModel extends Model {
             $stmt = self::getDb()->prepare("UPDATE users SET name = ?, email = ? WHERE id = ?");
             return $stmt->execute([$name, $email, $id]);
         } catch (\PDOException $e) {
-            Logger::error("Error al actualizar perfil del usuario ID $id: " . $e->getMessage());
+            Logger::error("Error updating profile for user ID $id: " . $e->getMessage());
             return false;
         }
     }
@@ -257,7 +257,7 @@ class UserModel extends Model {
                 $id
             ]);
         } catch (\PDOException $e) {
-            Logger::error("Error al cambiar la contraseña del usuario ID $id: " . $e->getMessage());
+            Logger::error("Error changing password for user ID $id: " . $e->getMessage());
             return false;
         }
     }
@@ -270,7 +270,7 @@ class UserModel extends Model {
     }
 
     public function setDarkMode($userId, $enabled) {
-        $enabled = $enabled ? 1 : 0; // 🔥 Fuerza que siempre sea 1 o 0
+        $enabled = $enabled ? 1 : 0; // 🔥 Force it to always be 1 or 0
         $stmt = self::getDb()->prepare("UPDATE user_preferences SET dark_mode = ? WHERE user_id = ?");
         return $stmt->execute([$enabled, $userId]);
     }
@@ -320,10 +320,10 @@ class UserModel extends Model {
         'avatar',
         $file['relative_path']
     ])) {
-        return self::getDb()->lastInsertId(); // ✅ Devuelve el ID insertado
+        return self::getDb()->lastInsertId(); // ✅ Returns the inserted ID
     }
 
-        return false; // ❌ Si falla
+        return false; // ❌ If it fails
     }
 
     public function deleteAvatarRecord($userId) {
@@ -347,12 +347,12 @@ class UserModel extends Model {
             SELECT * FROM logs 
             WHERE user = ? 
             AND (
-                action LIKE '%inició sesión%' OR
-                action LIKE '%cambió su contraseña%' OR
-                action LIKE '%actualizó su perfil%' OR
-                action LIKE '%actualizó su foto de perfil%' OR
-                action LIKE '%modificó sus preferencias%' OR
-                action LIKE '%solicitó eliminación%'
+                action LIKE '%logged in%' OR
+                action LIKE '%changed their password%' OR
+                action LIKE '%updated their profile%' OR
+                action LIKE '%updated their profile picture%' OR
+                action LIKE '%modified their preferences%' OR
+                action LIKE '%requested deletion%'
             )
             ORDER BY timestamp DESC 
             LIMIT 20

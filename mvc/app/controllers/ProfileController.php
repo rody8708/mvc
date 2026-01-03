@@ -15,7 +15,7 @@ class ProfileController extends Controller {
 
         $model = new UserModel();
         $user = $model->findById($userId);
-        $username = $_SESSION['user']['name']; // 🔥 aquí el nombre
+        $username = $_SESSION['user']['name']; // 🔥 here is the name
         $logs = $model->getUserLogs($username);
 
         $this->loadView('profile/profile', [
@@ -31,11 +31,11 @@ class ProfileController extends Controller {
         $this->requireLogin();
 
         $userId = $_SESSION['user']['id'];
-        $name = trim($_POST['name'] ?? '');
-        $email = trim($_POST['email'] ?? '');
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
         if (!$name || !$email) {
-            echo json_encode(['success' => false, 'message' => 'Todos los campos son obligatorios.']);
+            echo json_encode(['success' => false, 'message' => 'All fields are required.']);
             return;
         }
 
@@ -45,10 +45,10 @@ class ProfileController extends Controller {
         if ($updated) {
             $_SESSION['user']['name'] = $name;
             $_SESSION['user']['email'] = $email;
-            Logger::info("Usuario actualizó su perfil: ID $userId");
-            echo json_encode(['success' => true, 'message' => 'Perfil actualizado correctamente.']);
+            Logger::info("User updated their profile: ID $userId");
+            echo json_encode(['success' => true, 'message' => 'Profile updated successfully.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'No se pudo actualizar el perfil.']);
+            echo json_encode(['success' => false, 'message' => 'Could not update profile.']);
         }
     }
 
@@ -58,25 +58,25 @@ class ProfileController extends Controller {
         $this->requireLogin();
 
         $userId = $_SESSION['user']['id'];
-        $current = $_POST['current_password'] ?? '';
-        $new = $_POST['new_password'] ?? '';
-        $confirm = $_POST['confirm_password'] ?? '';
+        $current = filter_input(INPUT_POST, 'current_password', FILTER_SANITIZE_STRING);
+        $new = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
+        $confirm = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
 
         if (!$current || !$new || !$confirm) {
-            echo json_encode(['success' => false, 'message' => 'Todos los campos son obligatorios.']);
+            echo json_encode(['success' => false, 'message' => 'All fields are required.']);
             return;
         }
 
         if ($new !== $confirm) {
-            echo json_encode(['success' => false, 'message' => 'La nueva contraseña no coincide.']);
+            echo json_encode(['success' => false, 'message' => 'The new password does not match.']);
             return;
         }
 
         $model = new UserModel();
-        $user = $model->findById($userId); // ✅ NECESARIO
+        $user = $model->findById($userId); // ✅ NECESSARY
         
         if (!password_verify($current, $user['password'])) {
-            echo json_encode(['success' => false, 'message' => 'Contraseña actual incorrecta.']);
+            echo json_encode(['success' => false, 'message' => 'Current password is incorrect.']);
             return;
         }
 
@@ -85,12 +85,12 @@ class ProfileController extends Controller {
 
         if ($success) {
             Mailer::sendPasswordChangedEmail($user['email'], $user['name']);
-            Logger::info("Usuario cambió su contraseña: ID $userId");
-            echo json_encode(['success' => true, 'message' => 'Contraseña cambiada correctamente.']);
-            // Crear notificación
-            $this->notificationModel->create($userId, 'Tu contraseña fue actualizada correctamente.');
+            Logger::info("User changed their password: ID $userId");
+            echo json_encode(['success' => true, 'message' => 'Password changed successfully.']);
+            // Create notification
+            $this->notificationModel->create($userId, 'Your password was updated successfully.');
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al cambiar la contraseña.']);
+            echo json_encode(['success' => false, 'message' => 'Error changing the password.']);
         }
     }
 
@@ -100,7 +100,7 @@ class ProfileController extends Controller {
         ob_clean();
 
         if (!isset($_SESSION['user'])) {
-            echo json_encode(['success' => false, 'message' => 'Sesión no iniciada']);
+            echo json_encode(['success' => false, 'message' => 'Session not started']);
             return;
         }
 
@@ -113,11 +113,11 @@ class ProfileController extends Controller {
         if ($success) {                       
             Functions::updateUserField($userId, 'dark_mode', $isDark);
 
-            Logger::info("Usuario $userId aplicó modo oscuro: " . ($isDark ? "Sí" : "No"));
+            Logger::info("User $userId applied dark mode: " . ($isDark ? "Yes" : "No"));
 
             echo json_encode(['success' => true, 'darkMode' => $isDark]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'No se pudo actualizar.']);
+            echo json_encode(['success' => false, 'message' => 'Could not update.']);
         }
     }
 
@@ -126,7 +126,7 @@ class ProfileController extends Controller {
     public function uploadAvatar()
     {
         if (!isset($_SESSION['user']['id'])) {
-            echo json_encode(['success' => false, 'message' => 'No autorizado.']);
+            echo json_encode(['success' => false, 'message' => 'Not authorized.']);
             return;
         }
 
@@ -151,8 +151,8 @@ class ProfileController extends Controller {
             if (file_exists($file['full_path'])) {
                 unlink($file['full_path']);
             }
-            Logger::error("Fallo al guardar avatar en base de datos.");
-            echo json_encode(['success' => false, 'message' => 'No se pudo guardar el avatar en la base de datos.']);
+            Logger::error("Failed to save avatar in database.");
+            echo json_encode(['success' => false, 'message' => 'Could not save the avatar in the database.']);
             return;
         }
 
@@ -164,8 +164,8 @@ class ProfileController extends Controller {
 
         if (!rename($file['full_path'], $newFullPath)) {
             $model->deleteAvatarRecord($userId);
-            Logger::error("No se pudo renombrar el avatar temporal a $newFileName");
-            echo json_encode(['success' => false, 'message' => 'Error al guardar el avatar.']);
+            Logger::error("Could not rename temporary avatar to $newFileName");
+            echo json_encode(['success' => false, 'message' => 'Error saving the avatar.']);
             return;
         }
 
@@ -177,8 +177,8 @@ class ProfileController extends Controller {
             if (file_exists($newFullPath)) {
                 unlink($newFullPath);
             }
-            Logger::error("Fallo al actualizar el nombre del avatar en la base de datos.");
-            echo json_encode(['success' => false, 'message' => 'No se pudo actualizar el avatar.']);
+            Logger::error("Failed to update avatar name in the database.");
+            echo json_encode(['success' => false, 'message' => 'Could not update the avatar.']);
             return;
         }
 
@@ -191,17 +191,17 @@ class ProfileController extends Controller {
             if (file_exists($newFullPath)) {
                 unlink($newFullPath);
             }
-            Logger::error("Fallo al escribir el archivo JSON del usuario.");
-            echo json_encode(['success' => false, 'message' => 'No se pudo guardar el JSON del avatar.']);
+            Logger::error("Failed to write user JSON file.");
+            echo json_encode(['success' => false, 'message' => 'Could not save the avatar JSON.']);
             return;
         }
 
-        Logger::info("Usuario $userId actualizó su avatar.");
+        Logger::info("User $userId updated their avatar.");
 
         // ✅ 5. Devolver respuesta final al frontend
         echo json_encode([
             'success' => true,
-            'message' => 'Avatar actualizado con éxito.',
+            'message' => 'Avatar updated successfully.',
             'avatar' => BASE_URL . 'assets/' . $newRelativePath
         ]);
     }
@@ -212,12 +212,12 @@ class ProfileController extends Controller {
         ob_clean();
 
         if (!isset($_SESSION['user']['id'])) {
-            echo json_encode(['success' => false, 'message' => 'No autorizado.']);
+            echo json_encode(['success' => false, 'message' => 'Not authorized.']);
             return;
         }
 
         $userId = $_SESSION['user']['id'];
-        $language = $_POST['language'] ?? 'es';
+        $language = filter_input(INPUT_POST, 'language', FILTER_SANITIZE_STRING);
         $allowed = ['es', 'en']; // Idiomas permitidos
 
         if (!in_array($language, $allowed)) {
@@ -230,11 +230,11 @@ class ProfileController extends Controller {
         $jsonUpdated = Functions::updateUserField($userId, 'language', $language);       
 
         if ($dbUpdated && $jsonUpdated) {
-            Logger::info("Usuario $userId cambió idioma a $language");
-            echo json_encode(['success' => true, 'message' => 'Idioma actualizado.']);
+            Logger::info("User $userId changed language to $language");
+            echo json_encode(['success' => true, 'message' => 'Language updated.']);
         } else {
-            Logger::info("Usuario $userId error al cambiar el idioma a $language");
-            echo json_encode(['success' => false, 'message' => 'No se pudo actualizar el idioma.']);
+            Logger::info("User $userId error changing language to $language");
+            echo json_encode(['success' => false, 'message' => 'Could not update the language.']);
         }
     }
 
@@ -250,13 +250,13 @@ class ProfileController extends Controller {
 
         // Cambiar estado a 2 = Eliminado
         if ($model->setUserInactive($userId, 3) && $model->requestAccountClosure($userId)) {
-            Logger::info("Solicitud de eliminación de su cuenta ID: $userId.");
+            Logger::info("Account deletion request ID: $userId.");
             
             session_destroy(); // 🔥 Cerramos la sesión
             
-            echo json_encode(['success' => true, 'message' => 'Tu cuenta ha sido eliminada.']);
+            echo json_encode(['success' => true, 'message' => 'Your account has been deleted.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'No se pudo eliminar tu cuenta.']);
+            echo json_encode(['success' => false, 'message' => 'Could not delete your account.']);
         }
     }
 

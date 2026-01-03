@@ -161,4 +161,10 @@
       </table>
   </div>
 
+  <div class="row mb-3">
+        <div class="col-md-12 text-end">
+            <a href="/admin/logs" class="btn btn-info">Ver Logs del Sistema</a>
+        </div>
+    </div>
+
 </div>

@@ -17,47 +17,47 @@ class User
 
     protected static $userJson = null;
 
-    // 🔥 Cargar el JSON del usuario una sola vez
+    // 🔥 Load the user JSON only once
     protected static function loadUserJson() {
         if (self::$userJson === null && isset($_SESSION['user']['id'])) {
             self::$userJson = Functions::getUserJson($_SESSION['user']['id']);            
         }
     }
 
-    // 🔥 Obtener el ID del rol
+    // 🔥 Get the role ID
     public static function roleId() {
         self::loadUserJson();
-        return self::$userJson['role_id'] ?? 1; // 🔥 1 = user por defecto
+        return self::$userJson['role_id'] ?? 1; // 🔥 1 = default user
 
     }
 
-    // 🔥 Obtener el nombre del rol
+    // 🔥 Get the role name
     public static function roleName() {
         $roleId = self::roleId();
         return self::ROLES[$roleId] ?? 'unknown';
     }
 
-    // 🔥 Verificar si es Admin
+    // 🔥 Check if Admin
     public static function isAdmin() {        
         return self::roleId() == 2;
     }
 
-    // 🔥 Verificar si es Editor
+    // 🔥 Check if Editor
     public static function isEditor() {
         return self::roleId() == 3;
     }
 
-    // 🔥 Verificar si es Supervisor
+    // 🔥 Check if Supervisor
     public static function isSupervisor() {
         return self::roleId() == 4;
     }
 
-    // 🔥 Verificar si es Moderador
+    // 🔥 Check if Moderator
     public static function isModerator() {
         return self::roleId() == 5;
     }
 
-    // 🔥 Verificar si es usuario normal
+    // 🔥 Check if normal user
     public static function isUser() {
         return self::roleId() == 1;
     }

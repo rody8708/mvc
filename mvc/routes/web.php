@@ -30,6 +30,7 @@ $router->addRoute('POST', '/admin/change-role', 'AdminController@changeRole');
 $router->addRoute('POST', '/admin/delete-user', 'AdminController@deleteUser');
 $router->addRoute('POST', '/admin/create-user', 'AdminController@createUser');
 $router->addRoute('POST', '/admin/update-user', 'AdminController@updateUser');
+$router->addRoute('GET', '/admin/logs', 'AdminController@viewLogs');
 
 
 //$router->addRoute('GET', '/password/request', 'PasswordResetController@requestForm');
@@ -74,7 +75,10 @@ $router->addRoute('GET', '/layouts/help', 'HomeController@help');
 
 
 
-
+// Rutas para PayPal
+$router->addRoute('POST', '/paypal/create-subscription', 'PayPalController@createSubscription');
+$router->addRoute('GET', '/paypal/return', 'PayPalController@handleReturn');
+$router->addRoute('GET', '/paypal/cancel', 'PayPalController@handleCancel');
 
 
 

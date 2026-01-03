@@ -15,7 +15,7 @@ class Logger {
         }
 
         if (!file_exists(self::$logFile)) {
-            file_put_contents(self::$logFile, "=== LOG INICIADO ===\n", FILE_APPEND);
+            file_put_contents(self::$logFile, "=== LOG STARTED ===\n", FILE_APPEND);
         }
     }
 
@@ -24,33 +24,33 @@ class Logger {
 
         $details = \App\Core\Functions::getClientDetails();
         $ip = $details['ip'];
-        $browser = $details['navegador'];
-        $os = $details['sistema'];
-        $user = $details['usuario'];
+        $browser = $details['browser'];
+        $os = $details['system'];
+        $user = $details['user'];
 
-        $formatted = "[$date] [$level] [$ip | $os | $browser | Usuario: $user] $message" . PHP_EOL;
+        $formatted = "[$date] [$level] [$ip | $os | $browser | User: $user] $message" . PHP_EOL;
 
-        // Escribe en archivo siempre
+        // Always write to file
         file_put_contents(self::$logFile, $formatted, FILE_APPEND);
 
-        // Luego intenta guardar en base de datos
+        // Then try saving to the database
         try {
             self::logToDBInternal($user, $ip, $os, $browser, $message, $level, $date);
         } catch (\Throwable $e) {
-            // Si falla, solo lo dejamos en archivo sin reintentar
-            file_put_contents(self::$logFile, "[ERROR] No se pudo guardar en DB: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+            // If it fails, just leave it in the file without retrying
+            file_put_contents(self::$logFile, "[ERROR] Could not save to DB: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
         }
     }
 
 
     public static function handleError($errno, $errstr, $errfile, $errline) {
-        self::error("❗Error $errno: $errstr en $errfile:$errline");
+        self::error("❗Error $errno: $errstr in $errfile:$errline");
     }
 
     public static function handleShutdown() {
         $error = error_get_last();
         if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR])) {
-            self::error("💥 Fatal: {$error['message']} en {$error['file']}:{$error['line']}");
+            self::error("💥 Fatal: {$error['message']} in {$error['file']}:{$error['line']}");
         }
     }
 

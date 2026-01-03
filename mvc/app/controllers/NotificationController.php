@@ -29,7 +29,7 @@ class NotificationController extends Controller {
             return;
         }
 
-        $id = $_POST['id'] ?? null;
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
         if (!$id) {
             echo json_encode(['success' => false, 'message' => 'ID de notificación no proporcionado']);
             return;

@@ -11,7 +11,7 @@ class LogsController extends Controller {
         $this->requireAdmin();
         $model = new LogModel();
 
-        $page = $_GET['page'] ?? 1;
+        $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?: 1;
         $perPage = 10;
         $offset = ($page - 1) * $perPage;
 
@@ -33,11 +33,11 @@ class LogsController extends Controller {
 
         // Recoger filtros del formulario
         $filters = [
-            'user'      => trim($_POST['user'] ?? ''),
-            'level'     => trim($_POST['level'] ?? ''),
-            'ip'        => trim($_POST['ip'] ?? ''),
-            'action'    => trim($_POST['action'] ?? ''),
-            'date_from' => trim($_POST['date_from'] ?? ''),
+            'user'      => filter_input(INPUT_POST, 'user', FILTER_SANITIZE_STRING),
+            'level'     => filter_input(INPUT_POST, 'level', FILTER_SANITIZE_STRING),
+            'ip'        => filter_input(INPUT_POST, 'ip', FILTER_SANITIZE_STRING),
+            'action'    => filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING),
+            'date_from' => filter_input(INPUT_POST, 'date_from', FILTER_SANITIZE_STRING),
             'date_to'   => trim($_POST['date_to'] ?? '')
         ];
 

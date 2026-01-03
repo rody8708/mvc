@@ -7,7 +7,7 @@ use PDOException;
 use App\Core\Logger;
 
 class Model {
-    protected static $db = null; // Conexión compartida (singleton)
+    protected static $db = null; // Shared connection (singleton)
 
     public function __construct() {
         if (self::$db === null) {
@@ -15,23 +15,23 @@ class Model {
                 self::$db = new PDO("sqlite:" . DB_PATH);
                 self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // ✅ Registrar conexión exitosa
-                //Logger::info("Conexión a la base de datos establecida.");
+                // ✅ Log successful connection
+                //Logger::info("Database connection established.");
             } catch (PDOException $e) {
-                // ❌ Registrar error de conexión
-                Logger::error("Error al conectar a la base de datos: " . $e->getMessage());
-                die("Error de conexión a la base de datos: " . $e->getMessage());
+                // ❌ Log connection error
+                Logger::error("Error connecting to the database: " . $e->getMessage());
+                die("Database connection error: " . $e->getMessage());
             }
         }
     }
 
     /**
-     * Obtener la instancia PDO
+     * Get the PDO instance
      */
     public static function getDb() {
         if (self::$db === null) {
-            // Forzar la conexión si no existe
-            new static(); // Esto ejecuta el constructor y establece la conexión
+            // Force the connection if it does not exist
+            new static(); // This executes the constructor and establishes the connection
         }
         return self::$db;
     }

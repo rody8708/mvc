@@ -121,5 +121,61 @@ class Mailer
             return false;
         }
     }
+
+    /**
+     * Send subscription confirmation email
+     *
+     * @param string $to    Recipient email address
+     * @param string $subscriptionId Subscription ID
+     *
+     * @return bool
+     */
+    public function sendSubscriptionConfirmation(string $to, string $subscriptionId): bool
+    {
+        $mail = clone $this->mail;
+
+        try {
+            $mail->addAddress($to);
+            $mail->Subject = 'Confirmación de suscripción';
+
+            $mail->Body = "<h3>Gracias por suscribirte</h3>\n<p>Tu ID de suscripción es: <strong>{$subscriptionId}</strong></p>";
+            $mail->isHTML(true);
+
+            $mail->send();
+            Logger::info("Correo de confirmación de suscripción enviado a {$to}");
+            return true;
+        } catch (Exception $e) {
+            Logger::error("Error al enviar correo de confirmación de suscripción: {$mail->ErrorInfo}");
+            return false;
+        }
+    }
+
+    /**
+     * Send subscription cancellation email
+     *
+     * @param string $to    Recipient email address
+     * @param string $subscriptionId Subscription ID
+     *
+     * @return bool
+     */
+    public function sendSubscriptionCancellation(string $to, string $subscriptionId): bool
+    {
+        $mail = clone $this->mail;
+
+        try {
+            $mail->addAddress($to);
+            $mail->Subject = 'Cancelación de suscripción';
+
+            $mail->Body = "<h3>Tu suscripción ha sido cancelada</h3>\n<p>Tu ID de suscripción era: <strong>{$subscriptionId}</strong></p>";
+            $mail->isHTML(true);
+
+            $mail->send();
+            Logger::info("Correo de cancelación de suscripción enviado a {$to}");
+            return true;
+        } catch (Exception $e) {
+            Logger::error("Error al enviar correo de cancelación de suscripción: {$mail->ErrorInfo}");
+            return false;
+        }
+    }
 }
 

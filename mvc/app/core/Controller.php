@@ -7,51 +7,51 @@ use App\Core\User;
 use App\Models\NotificationModel;
 
 class Controller {    
-    protected $functions; // Instancia de la clase Functions
+    protected $functions; // Instance of the Functions class
     protected $notificationModel;
     protected $user;
 
 
     public function __construct() {
-        $this->functions        = new Functions();       // inicializar
+        $this->functions        = new Functions();       // initialize
         $this->notificationModel = new NotificationModel();
         $this->user             = new User();
     }
 
 
     /**
-     * Cargar un modelo
-     * @param string $model - Nombre del modelo
-     * @return object - Instancia del modelo
+     * Load a model
+     * @param string $model - Model name
+     * @return object - Model instance
      */
     public function loadModel($model) {
         $modelPath = BASE_PATH . "/app/models/$model.php";
 
-        // Verifica si el archivo del modelo existe antes de cargarlo
+        // Check if the model file exists before loading it
         if (file_exists($modelPath)) {
-            require_once $modelPath; // Incluye el archivo del modelo
-            $modelClass = "\\App\\Models\\$model"; // Espacio de nombres del modelo
-            return new $modelClass(); // Retorna una instancia del modelo
+            require_once $modelPath; // Include the model file
+            $modelClass = "\\App\\Models\\$model"; // Model namespace
+            return new $modelClass(); // Return an instance of the model
         } else {
-            // Registra un error en el log y detiene la ejecución si el modelo no existe
-            Logger::error("El modelo '$model' no existe.");
-            die("El modelo '$model' no existe.");
+            // Log an error and stop execution if the model does not exist
+            Logger::error("The model '$model' does not exist.");
+            die("The model '$model' does not exist.");
         }
     }
 
     /**
-     * Cargar una vista
-     * @param string $view - Nombre de la vista
-     * @param array $data - Datos a pasar a la vista
+     * Load a view
+     * @param string $view - View name
+     * @param array $data - Data to pass to the view
      */
     public function loadView($view, $data = []) {
         $viewPath = BASE_PATH . "/app/views/$view.php";
 
         if (file_exists($viewPath)) {
-            $viewName = basename($view); // ✅ nombre como 'admin_users'
-            $data['viewName'] = $viewName; // ✅ agregarlo al array de datos
+            $viewName = basename($view); // ✅ name like 'admin_users'
+            $data['viewName'] = $viewName; // ✅ add it to the data array
 
-            extract($data); // ← ahora también existe $viewName
+            extract($data); // ← now $viewName also exists
 
             ob_start();
             require $viewPath;
@@ -59,8 +59,8 @@ class Controller {
 
             require BASE_PATH . '/app/views/layouts/main.php';
         } else {
-            Logger::error("La vista '$view' no existe.");
-            die("Error: La vista '$view' no existe.");
+            Logger::error("The view '$view' does not exist.");
+            die("Error: The view '$view' does not exist.");
         }
     }
 
@@ -69,16 +69,16 @@ class Controller {
 
 
     /**
-     * Método para probar las funciones del archivo functions.php
+     * Method to test the functions of the functions.php file
      */
     public function testFunctions() {
-        echo $this->functions->sayHello(); // Llama a una función de prueba desde functions.php
+        echo $this->functions->sayHello(); // Calls a test function from functions.php
     }
 
 
     protected function requireLogin() {
         if (!\App\Core\Functions::isLoggedIn()) {
-            \App\Core\Logger::warning("Intento de acceso sin sesión iniciada a " . $_SERVER['REQUEST_URI']);
+            \App\Core\Logger::warning("Attempt to access without an active session to " . $_SERVER['REQUEST_URI']);
             header("Location: " . BASE_URL . "auth/login");
             exit;
         }
@@ -86,7 +86,7 @@ class Controller {
 
     protected function requireAdmin() {
         if (!\App\Core\User::isAdmin()) {
-            \App\Core\Logger::warning("Intento de acceso restringido (no admin) a " . $_SERVER['REQUEST_URI']);
+            \App\Core\Logger::warning("Attempt to access restricted area (non-admin) to " . $_SERVER['REQUEST_URI']);
             header("Location: " . BASE_URL . "auth/login");
             exit;
         }

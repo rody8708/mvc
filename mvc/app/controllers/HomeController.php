@@ -37,7 +37,7 @@ class HomeController extends Controller {
             'download_windows'    => $cfg['download_url_windows']  ?? (BASE_URL . 'download/windows'),
             'changelog'           => $cfg['changelog']             ?? '',
             // Ajusta la ruta del logo a donde lo tengas realmente
-            'logo_url'            => BASE_URL . 'assets/images/zendrhax-invoices-logo.png',
+            'logo_url'            => BASE_URL . 'assets/images/web-logo.png',
     ];    
         
         $this->loadView('home', $data);

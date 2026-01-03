@@ -11,65 +11,65 @@ class Functions {
     public static $forcedBrowser = null;
 
     /**
-     * Copiar un archivo
+     * Copy a file
      */
     public static function copyFile($source, $destination) {
         if (!file_exists($source)) {
-            Logger::error("No se puede copiar. Archivo origen no encontrado: $source");
+            Logger::error("Cannot copy. Source file not found: $source");
             return false;
         }
 
         if (!copy($source, $destination)) {
-            Logger::error("Fallo al copiar de $source a $destination");
+            Logger::error("Failed to copy from $source to $destination");
             return false;
         }
 
-        Logger::info("Archivo copiado exitosamente de $source a $destination");
+        Logger::info("File successfully copied from $source to $destination");
         return true;
     }
 
     /**
-     * Mover un archivo
+     * Move a file
      */
     public static function moveFile($source, $destination) {
         if (!file_exists($source)) {
-            Logger::error("No se puede mover. Archivo origen no encontrado: $source");
+            Logger::error("Cannot move. Source file not found: $source");
             return false;
         }
 
         if (!rename($source, $destination)) {
-            Logger::error("Fallo al mover archivo de $source a $destination");
+            Logger::error("Failed to move file from $source to $destination");
             return false;
         }
 
-        Logger::info("Archivo movido de $source a $destination");
+        Logger::info("File moved from $source to $destination");
         return true;
     }
 
     /**
-     * Eliminar un archivo
+     * Delete a file
      */
     public static function deleteFile($filePath) {
         if (!file_exists($filePath)) {
-            Logger::warning("Intento de eliminar archivo inexistente: $filePath");
+            Logger::warning("Attempt to delete nonexistent file: $filePath");
             return false;
         }
 
         if (!unlink($filePath)) {
-            Logger::error("No se pudo eliminar el archivo: $filePath");
+            Logger::error("Could not delete the file: $filePath");
             return false;
         }
 
-        Logger::info("Archivo eliminado: $filePath");
+        Logger::info("File deleted: $filePath");
         return true;
     }
 
     /**
-     * Eliminar una carpeta y todo su contenido
+     * Delete a folder and all its contents
      */
     public static function deleteDirectory($dirPath) {
         if (!is_dir($dirPath)) {
-            Logger::warning("Intento de eliminar directorio inexistente: $dirPath");
+            Logger::warning("Attempt to delete nonexistent directory: $dirPath");
             return false;
         }
 
@@ -80,20 +80,20 @@ class Functions {
             $fullPath = $dirPath . DIRECTORY_SEPARATOR . $item;
 
             if (is_dir($fullPath)) {
-                self::deleteDirectory($fullPath); // Recursivo
+                self::deleteDirectory($fullPath); // Recursive
             } else {
                 if (!unlink($fullPath)) {
-                    Logger::error("No se pudo eliminar el archivo dentro de directorio: $fullPath");
+                    Logger::error("Could not delete file inside directory: $fullPath");
                 }
             }
         }
 
         if (!rmdir($dirPath)) {
-            Logger::error("No se pudo eliminar el directorio: $dirPath");
+            Logger::error("Could not delete the directory: $dirPath");
             return false;
         }
 
-        Logger::info("Directorio eliminado correctamente: $dirPath");
+        Logger::info("Directory successfully deleted: $dirPath");
         return true;
     }
 
