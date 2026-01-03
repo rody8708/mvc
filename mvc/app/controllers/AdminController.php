@@ -403,5 +403,34 @@ class AdminController extends Controller {
         $settings = $model->getAllSettings();
         $this->loadView('admin/settings', ['settings' => $settings]);
     }
+
+    public function getStatisticsData() {
+        $this->requireAdmin();
+        header('Content-Type: application/json');
+        ob_clean();
+
+        $data = [
+            'total_users' => 100, // Replace with actual data
+            'recent_logs' => 50, // Replace with actual data
+            'total_notifications' => 25, // Replace with actual data
+            'chart_labels' => ['Jan', 'Feb', 'Mar'],
+            'chart_data' => [10, 20, 30]
+        ];
+
+        echo json_encode($data);
+    }
+
+    public function getAuditData() {
+        $this->requireAdmin();
+        header('Content-Type: application/json');
+        ob_clean();
+
+        $logs = [
+            ['timestamp' => '2026-01-01 12:00:00', 'user' => 'Admin', 'ip' => '127.0.0.1', 'action' => 'Login', 'level' => 'INFO'],
+            ['timestamp' => '2026-01-02 14:00:00', 'user' => 'User1', 'ip' => '192.168.1.1', 'action' => 'Update Profile', 'level' => 'INFO']
+        ];
+
+        echo json_encode(['logs' => $logs]);
+    }
 }
 ?>
