@@ -318,7 +318,7 @@ class AdminController extends Controller {
         $this->requireAdmin();
         $model = new LogModel();
         $logs = $model->getAllLogs();
-        $this->loadView('admin/audit', compact('logs'));
+        $this->loadView('admin/audit', ['logs' => $logs]);
     }
 
     public function manageSettings() {
@@ -389,7 +389,7 @@ class AdminController extends Controller {
         $this->requireAdmin();
         $model = new NotificationModel();
         $notifications = $model->getAllNotifications();
-        $this->loadView('admin/notifications', compact('notifications'));
+        $this->loadView('admin/notifications', ['notifications' => $notifications]);
     }
 
     public function viewFiles() {
@@ -401,7 +401,7 @@ class AdminController extends Controller {
         $this->requireAdmin();
         $model = new ConfigModel();
         $settings = $model->getAllSettings();
-        $this->loadView('admin/settings', compact('settings'));
+        $this->loadView('admin/settings', ['settings' => $settings]);
     }
 }
 ?>
