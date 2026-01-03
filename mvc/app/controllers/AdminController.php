@@ -188,7 +188,7 @@ class AdminController extends Controller {
         $this->requireAdmin();
 
         $model = new LogModel();
-        $logs = $model->getAllLogs();
+        $logs = $model->getLogs(50, 0); // Obtener los primeros 50 registros
 
         $this->loadView('admin/logs', compact('logs'));
     }
